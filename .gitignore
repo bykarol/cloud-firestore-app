@@ -1,0 +1,70 @@
+# Python files and directories
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.egg-info/
+
+# Virtual environment directories
+env/
+venv/
+ENV/
+ENV3/
+venv3/
+.venv/
+.venv3/
+
+# Local configuration files and databases
+db.sqlite3
+*.sqlite3
+*.db
+*.log
+*.pot
+*.py[cod]
+*.coverage
+*.coveragerc
+*.pyo
+*.mypy_cache/
+.coverage
+.tox/
+.pytest_cache/
+.coverage.*
+
+# OS-specific configuration
+.DS_Store
+Thumbs.db
+
+# Log and development files
+*.log
+*.pot
+*.py[cod]
+
+# IDE files and directories
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Django configuration files
+*.local_settings.py
+*.env
+
+# Cache and media files
+media/
+staticfiles/
+static/
+node_modules/
+
+# Other
+*.tmp
+*.bak
+*.swp
+*.swo
+*.~undo-tree~
+*~
+*.sw?

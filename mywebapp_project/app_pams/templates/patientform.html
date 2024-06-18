@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+<h2 class="mb-4">Add Patient</h2>
+{% if messages %}
+{% for message in messages %}
+<div
+  class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% elif message.tags == 'warning' %}alert-warning{% else %}alert-info{% endif %}"
+  role="alert">
+  {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="container d-flex flex-column mb-3 bg-dark text-white rounded shadow-lg">
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="patient_firstname">First Name</label>
+      <input type="text" class="form-control" id="patient_firstname" name="patient_firstname" required>
+    </div>
+    <div class="form-group">
+      <label for="patient_lastname">Last Name</label>
+      <input type="text" class="form-control" id="patient_lastname" name="patient_lastname" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="date_of_birth">Date of Birth</label>
+      <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary form-control mt-3 mb-3">Add Patient</button>
+    </div>
+  </form>
+</div>
+{% endblock page_content %}
