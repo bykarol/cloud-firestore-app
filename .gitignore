@@ -1,4 +1,6 @@
 # Python files and directories
+config/
+serviceAccount.json
 *.pyc
 *.pyo
 *.pyd
