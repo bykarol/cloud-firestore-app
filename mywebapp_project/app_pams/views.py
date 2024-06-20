@@ -61,5 +61,19 @@ def newpatient(request):
 def updatepatient(request, patient_id):
     return render(request, "updatepatient.html")
 
+# Delete a patient
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import Patient
+
 def deletepatient(request, patient_id):
-    return render(request, "deletepatient.html")
+    try:
+        # Eliminar el documento usando el ID proporcionado por Firestore
+        db.collection('patients').document(patient_id).delete()
+        messages.success(request, f'Patient with ID {patient_id} deleted successfully!')
+    except Exception as e:
+        messages.error(request, f'Error deleting patient: {e}')
+
+    return redirect('homepage')
+
+# TODO: delete cache: email because I have an error adding data that was previous deleted
