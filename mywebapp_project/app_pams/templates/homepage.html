@@ -23,6 +23,10 @@
         <td>{{ patient.lastname }}</td>
         <td>{{ patient.email }}</td>
         <td>{{ patient.date_of_birth }}</td>
+        <td>
+          <a href="{% url 'updatepatient' patient.id %}" class="btn btn-primary btn-sm">Update</a>
+          <a href="{% url 'deletepatient' patient.id %}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
       </tr>
       {% empty %}
       <tr>

@@ -1,3 +1,5 @@
+# This file is just for testing purpose during the development process
+
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
