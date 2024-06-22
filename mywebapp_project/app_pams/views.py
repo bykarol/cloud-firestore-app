@@ -3,8 +3,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from . forms import PatientForm
 from django.conf import settings
-import firebase_admin
-from firebase_admin import credentials
 from firebase_admin import firestore
 import datetime
 
@@ -12,15 +10,13 @@ import datetime
 service_account_path = os.path.join(settings.BASE_DIR, 'config', 'serviceAccount.json')
 # Verifying if the file exists
 if not os.path.exists(service_account_path):
-    raise FileNotFoundError(f"No se encontró el archivo serviceAccount.json en la ruta: {service_account_path}")
+    raise FileNotFoundError(f"serviceAccount.json file not found in the route: {service_account_path}")
 
-cred = credentials.Certificate(service_account_path)
-app = firebase_admin.initialize_app(cred)
+# Database connection
 db = firestore.client()
 
 # Display list of patients in Homepage
 def homepage(request):
-   #  patients = Patient.objects.all()
    patients_ref = db.collection("patients")
    patients = patients_ref.stream()
    patients_list = []
@@ -62,10 +58,6 @@ def updatepatient(request, patient_id):
     return render(request, "updatepatient.html")
 
 # Delete a patient
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import Patient
-
 def deletepatient(request, patient_id):
     try:
         # Eliminar el documento usando el ID proporcionado por Firestore
@@ -75,5 +67,3 @@ def deletepatient(request, patient_id):
         messages.error(request, f'Error deleting patient: {e}')
 
     return redirect('homepage')
-
-# TODO: delete cache: email because I have an error adding data that was previous deleted

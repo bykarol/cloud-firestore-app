@@ -12,9 +12,21 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+import firebase_admin
+from firebase_admin import credentials
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Setting firestore
+# Use a service account.
+service_account_path = os.path.join(BASE_DIR, 'config', 'serviceAccount.json')
+# Verifying if the file exists
+if not os.path.exists(service_account_path):
+    raise FileNotFoundError(f"serviceAccount.json file not found in the route: {service_account_path}")
+
+cred = credentials.Certificate(service_account_path)
+app = firebase_admin.initialize_app(cred)
 
 
 # Quick-start development settings - unsuitable for production
@@ -120,7 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATICFILES_DIRS = [
-  os.path.join(BASE_DIR, 'static'),
+  os.path.join(BASE_DIR, 'mywebapp_project/static'),
   os.path.join(BASE_DIR, 'app_pams/static'),
 ]
 
