@@ -6,12 +6,6 @@ from django.conf import settings
 from firebase_admin import firestore
 import datetime
 
-# Use a service account.
-service_account_path = os.path.join(settings.BASE_DIR, 'config', 'serviceAccount.json')
-# Verifying if the file exists
-if not os.path.exists(service_account_path):
-    raise FileNotFoundError(f"serviceAccount.json file not found in the route: {service_account_path}")
-
 # Database connection
 db = firestore.client()
 
